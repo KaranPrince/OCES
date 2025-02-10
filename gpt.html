@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      /* Case Status Box (Clickable) */
+      .case-status-box {
+        width: 350px;
+        height: 150px;
+       
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #007bff; 
+        border-radius: 15px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(
+          137deg,
+          #1176ea,
+          #dcecf0
+        );
+        color: #007bff;
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .case-status-box:hover {
+        transform: scale(1.05); 
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .box-content {
+        text-align: center;
+      }
+
+      .box-content img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+      }
+
+      .box-content p {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .case-details {
+        width: 60%;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #007bff;
+        border-radius: 15px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        display: none; 
+      }
+
+      .case-details h2 {
+        margin-bottom: 20px;
+        color: #007bff;
+        text-align: center;
+      }
+
+      .case-details p {
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      .case-details button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .case-details button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+
+    <!-- Case Status Box -->
+    <div class="case-status-box" id="caseStatusBox">
+      <div class="box-content">
+        <img
+          src="img/complaint-icon-14.png"
+          alt="Case Icon"
+        />
+        <p> Case Status</p>
+      </div>
+    </div>
+
+    <!-- Hidden Case Details -->
+    <div  class="case-details" id="caseDetails">
+      <h2>Case Status</h2>
+      <p><strong>Case ID:</strong> 12345</p>
+      <p><strong>Status:</strong> Under Investigation</p>
+      <p><strong>Date Registered:</strong> January 15, 2025</p>
+      <p><strong>Officer Assigned:</strong> Inspector John Doe</p>
+      <p>
+        <strong>Remarks:</strong> The case is currently being reviewed by the
+        assigned officer.
+      </p>
+      <button id="closeDetails">Close</button>
+    </div>
+
+    <script>
+      // Get the elements
+      const caseStatusBox = document.getElementById("caseStatusBox");
+      const caseDetails = document.getElementById("caseDetails");
+      const closeDetailsButton = document.getElementById("closeDetails");
+
+      // Show the case details when the box is clicked
+      caseStatusBox.addEventListener("click", () => {
+        caseDetails.style.display = "block"; // Show case details
+        caseStatusBox.style.display = "none"; // Hide the clickable box
+      });
+
+      // Hide the case details when "Close" is clicked
+      closeDetailsButton.addEventListener("click", () => {
+        caseDetails.style.display = "none"; // Hide case details
+        caseStatusBox.style.display = "flex"; // Show the clickable box again
+      });
+    </script>
+  </body>
+</html>

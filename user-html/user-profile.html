@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>User Profile</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      header {
+        background-color: #0648a4;
+        color: white;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+        gap: 40px;
+        padding-left: 50px;
+        box-shadow: 0px 1px 10px grey;
+        margin-bottom: 50px;
+      }
+
+      #hambar {
+        cursor: pointer;
+      }
+
+      .ham-menu {
+        position: fixed;
+        top: 0;
+        left: -50%;
+        right: 0;
+        background-color: rgb(222, 233, 243);
+        padding: 10px;
+        display: block;
+        width: 100vw;
+        transition: 0.5s;
+        padding-bottom: 3%;
+        width: 20vw;
+        height: 100vh;
+        padding-top: 5%;
+      }
+
+      .ham-menu a {
+        text-decoration: none;
+        color: black;
+        padding-top: 20%;
+      }
+
+      .ham-menu hr {
+        margin: 10% 0%;
+      }
+
+      #xmark {
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+        display: block;
+        top: 10px;
+      }
+
+      .topic {
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: -20px;
+        font-size: 30px;
+      }
+
+      .about-user{
+        margin-left: 3vw;
+        margin-top: 5%;
+        font-size: 1.3rem;
+      }
+
+      .about-user p{
+        margin: 4vh;
+      }
+
+      #log-out{
+  margin-left: 10px;
+}
+    </style>
+    <header>
+      <i id="hambar" class="fas fa-bars fa-lg"></i>
+      <h1>Online Case Enrollment System</h1>
+    </header>
+    <div class="ham-menu">
+      <p id="xmark" class="fas fa-xmark"></p>
+      <a href="homepage.html">Homepage</a>
+      <hr />
+      <a href="userhome.html">User Home</a>
+      <hr />
+      <a href="aboutus.html">About Us</a>
+      <hr />
+      <a href="contactus.html">Contact Us</a>
+      <hr />
+      <a href="user-register.html">Log Out <i id="log-out" class="fa fa-sign-out"></i>
+      </a>
+      <hr />
+    </div>
+
+    <div class="user-profile"></div>
+
+    <script>
+      let hamMenu = document.querySelector(".ham-menu");
+      let hamBar = document.getElementById("hambar");
+      let xmark = document.getElementById("xmark");
+
+      hamBar.addEventListener("click", () => {
+        hamMenu.style.left = "0%";
+      });
+
+      xmark.addEventListener("click", () => {
+        hamMenu.style.left = "-40%";
+      });
+
+      const storedUserDetails = localStorage.getItem("currentUser");
+      if (storedUserDetails) {
+        const userDetails = JSON.parse(storedUserDetails);
+        console.log("User Details:", userDetails);
+        console.log(userDetails.mobile);
+
+        let userProfile = document.querySelector(".user-profile");
+        userProfile.innerHTML = `
+      <p class="topic">User Profile</p>
+      <div class="about-user">
+      <p class="user-name">Name:${userDetails.name}</p>
+      <p class="user-email">Email:${userDetails.email}</p>
+      <p class="user-mobile">Mobile:${userDetails.mobile}</p>
+      </div>
+      `;
+      } else {
+        userProfile.innerHTML = `<p>No Users Found</p>`;
+      }
+    </script>
+  </body>
+</html>

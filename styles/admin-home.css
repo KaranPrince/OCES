@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  header {
+    background-color: #0648a4;
+    color: white;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    gap: 40px;
+    padding-left: 50px;
+    box-shadow: 0px 1px 10px grey;
+    margin-bottom: 50px;
+  }
+
+  .admin-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+  }
+
+  .admin-options div {
+    width: 350px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(137deg, #1176ea, #dcecf0);
+    color: #007bff;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 4%;
+  }
+
+  .admin-options div:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .admin-options div:active {
+    transform: scale(1);
+  }
+
+  .admin-options div img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+
+  }
+
+  
+  #hambar {
+    cursor: pointer;
+  }
+
+  .ham-menu {
+    position: fixed;
+    top: 0;
+    left: -40%;
+    background-color: rgb(222, 233, 243);
+    padding: 20px;
+    transition: 0.5s;
+    width: 20vw;
+    height: 100vh;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .ham-menu a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .ham-menu a:hover {
+    color: #0648a4;
+    transform: scale(1.01);
+  }
+
+  .ham-menu hr {
+    margin: 10px 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+  }
+
+  #xmark {
+    position: absolute;
+    right: 12px;
+    top: 6px;
+    cursor: pointer;
+    font-size: 22px;
+    transition: 0.3s;
+  }
+
+  #xmark:hover {
+    color: red;
+  }
+
+  .topic {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    color: #1224b6;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1000px) {
+    .admin-options {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ham-menu {
+      width: 30vw;
+    }
+  }
+
+  @media (max-width: 750px) {
+    .admin-options {
+      grid-template-columns: 1fr;
+    }
+  }

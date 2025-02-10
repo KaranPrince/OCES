@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Case</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../styles/newcase.css" />
+  </head>
+  <body>
+    <header>
+      <i id="hambar" class="fas fa-bars fa-lg"></i>
+      <h1>Online Case Enrollment System</h1>
+    </header>
+
+    <p class="topic">Post Complaint</p>
+    <div class="form-divs">
+      <div class="form-div">
+        <label for="name">Name</label>
+        <input id="name" type="text" />
+
+        <label for="email">Email</label>
+        <input id="email" type="email" />
+
+        <label for="reason">Reason</label>
+        <input id="reason" type="text" />
+
+        <label for="suspect">Suspect Name</label>
+        <input id="suspect" type="text" />
+      </div>
+      <div class="form-div">
+        <select name="location" id="location">
+          <option value="">Select Your District</option>
+          <option value="ariyalur">Ariyalur</option>
+          <option value="chengalpattu">Chengalpattu</option>
+          <option value="chennai">Chennai</option>
+          <option value="coimbatore">Coimbatore</option>
+          <option value="cuddalore">Cuddalore</option>
+          <option value="dharmapuri">Dharmapuri</option>
+          <option value="dindigul">Dindigul</option>
+          <option value="erode">Erode</option>
+          <option value="kallakurichi">Kallakurichi</option>
+          <option value="kanchipuram">Kanchipuram</option>
+          <option value="kanyakumari">Kanyakumari</option>
+          <option value="karur">Karur</option>
+          <option value="krishnagiri">Krishnagiri</option>
+          <option value="madurai">Madurai</option>
+          <option value="mayiladuthurai">Mayiladuthurai</option>
+          <option value="nagapattinam">Nagapattinam</option>
+          <option value="namakkal">Namakkal</option>
+          <option value="nilgiris">Nilgiris</option>
+          <option value="perambalur">Perambalur</option>
+          <option value="pudukkottai">Pudukkottai</option>
+          <option value="ramanathapuram">Ramanathapuram</option>
+          <option value="ranipet">Ranipet</option>
+          <option value="salem">Salem</option>
+          <option value="sivagangai">Sivagangai</option>
+          <option value="tenkasi">Tenkasi</option>
+          <option value="thanjavur">Thanjavur</option>
+          <option value="theni">Theni</option>
+          <option value="thoothukudi">Thoothukudi</option>
+          <option value="tiruchirappalli">Tiruchirappalli</option>
+          <option value="tirunelveli">Tirunelveli</option>
+          <option value="tirupattur">Tirupattur</option>
+          <option value="tiruppur">Tiruppur</option>
+          <option value="tiruvallur">Tiruvallur</option>
+          <option value="tiruvannamalai">Tiruvannamalai</option>
+          <option value="tiruvarur">Tiruvarur</option>
+          <option value="vellore">Vellore</option>
+          <option value="viluppuram">Viluppuram</option>
+          <option value="virudhunagar">Virudhunagar</option>
+        </select>
+
+        <select name="complainttype" id="complainttype">
+          <option value="">Complaint Type</option>
+          <option value="harassment">Harassment</option>
+          <option value="theft">Theft</option>
+          <option value="burglary">Burglary</option>
+          <option value="domestic_violence">Domestic Violence</option>
+          <option value="fraud">Fraud</option>
+          <option value="cybercrime">Cybercrime</option>
+          <option value="assault">Assault</option>
+          <option value="kidnapping">Kidnapping</option>
+          <option value="murder">Murder</option>
+          <option value="child_abuse">Child Abuse</option>
+        </select>
+
+        <label for="description">Complaint Description</label>
+        <textarea name="description" id="description"></textarea>
+      </div>
+    </div>
+
+    <button id="post-complaint">Post Complaint</button>
+
+
+    <div class="ham-menu">
+      <p id="xmark" class="fas fa-xmark"></p>
+      <a href="../homepage.html">Homepage</a>
+      <hr />
+      <a href="../userhome.html">User Home</a>
+      <hr />
+      <a href="../aboutus.html">About Us</a>
+      <hr />
+      <a href="../contactus.html">Contact Us</a>
+      <hr />
+      <a href="../user-register.html">Log Out <i id="log-out" class="fa fa-sign-out"></i>
+      </a>
+      <hr />         
+    </div>
+
+    <script src="../scripts/newcase.js"></script>
+  </body>
+</html>

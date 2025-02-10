@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+body {
+  background-image: url(img/How_to_Provide_247_Customer_Service_with_Tips__Benefits-scaled.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+ z-index: 3;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background-color: rgba(177, 215, 223, 0.5); 
+}
+
+.prj-title {
+  text-align: center;
+  padding-top: 2%;
+  font-weight: 700;
+  font-size: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.login-card-image {
+  height: 200px;
+  width: 200px;
+  border: 2px solid blue;
+  border-radius: 5px;
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  
+}
+
+.login-button {
+  padding: 15px 20px;
+  background-color: rgb(255, 255, 255);
+  color: blue;
+  border-radius: 5px;
+  border: none;
+  position: absolute;
+  font-size: 20px;
+  left: 60px;
+  bottom: -20px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid blue;
+  transition: 0.5s;
+}
+
+.login-button:not(#user-login-button){
+  left:50px
+}
+
+.login-button:hover {
+  background-color: blue;
+  color: white;
+}
+
+.login-cards {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  margin-top: 13%;
+}
+
+@media (max-width:800px) {
+  .login-cards{
+    margin-top: 22%;
+
+  }
+}

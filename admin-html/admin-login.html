@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, hsl(219, 84%, 58%), #2a5298);
+        margin: 0;
+      }
+      .login-container {
+        width: 350px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      h2 {
+        margin-bottom: 40px;
+        color: white;
+      }
+
+      input {
+        width: 94%;
+        padding: 12px;
+        margin: 10px 0 35px;
+        border: none;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        outline: none;
+        display: block;
+      }
+
+      input::placeholder {
+        color: #ddd;
+      }
+
+      button {
+        width: 50%;
+        padding: 12px;
+        background-color: rgba(0, 60, 255, 0.5);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s ease-in-out;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: rgba(0, 153, 255, 0.668);
+        transform: scale(1.05);
+      }
+
+      button:active {
+        transform: scale(1);
+        background-color: rgba(0, 60, 255, 0.5);
+      }
+
+      a {
+        display: block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #f8f9fa;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Admin Login</h2>
+      <form>
+        <input id="email" type="email" placeholder="Email" required />
+        <input
+          id="password"
+          type="password"
+          placeholder="Admin Passkey"
+          required
+        />
+        <button id="submitButton">Login</button>
+      </form>
+      <a href="index.html">Back to Homepage</a>
+    </div>
+
+    <script>
+   
+      let submitButton = document.getElementById("submitButton");
+      submitButton.addEventListener("click", (e) => {
+        e.preventDefault()
+
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value.trim();
+        if (!email || !password) {
+          alert("Please fill all fields");
+          return;
+        }
+        
+        if (email === "admin@gmail.com" && password === "adminforoces") {
+          window.location.href = "admin-home.html";
+          return;
+        } else {
+          alert("Invalid credentials, Please login again!");
+          return;
+        }
+
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+      });
+    </script>
+  </body>
+</html>

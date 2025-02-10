@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Assigned Cases</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      header {
+        background-color: #0648a4;
+        color: white;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+        gap: 40px;
+        padding-left: 50px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 50px;
+      }
+
+      #hambar {
+        cursor: pointer;
+      }
+
+      .ham-menu {
+        position: fixed;
+        top: 0;
+        left: -40%;
+        background-color: rgb(222, 233, 243);
+        padding: 20px;
+        transition: 0.5s;
+        width: 30vw;
+        height: 100vh;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .ham-menu a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .ham-menu a:hover {
+        color: #0648a4;
+        transform: scale(1.01);
+      }
+
+      .ham-menu hr {
+        margin: 10px 0;
+        border: 0.5px solid rgba(0, 0, 0, 0.2);
+      }
+
+      #xmark {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        font-size: 22px;
+        transition: 0.3s;
+        top: 7px;
+      }
+
+      #xmark:hover {
+        color: red;
+      }
+      body {
+        background-color: aliceblue;
+        padding-bottom: 100px;
+      }
+      .case-list {
+        margin: 20px;
+      }
+      .case-item {
+        background-color: #f0f0f0;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      .case-item h3 {
+        margin-bottom: 10px;
+      }
+      .case-item p {
+        margin-bottom: 5px;
+      }
+
+      .topic {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #1224b6;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <i id="hambar" class="fas fa-bars fa-lg"></i>
+      <h1>Online Case Enrollment System</h1>
+    </header>
+
+    <h1 class="topic">Assigned Cases</h1>
+    <div class="case-list" id="case-list"></div>
+
+    <div class="ham-menu">
+      <p id="xmark" class="fas fa-xmark"></p>
+      <a href="../homepage.html">Homepage</a>
+      <hr />
+      <a href="aboutus.html">About Us</a>
+      <hr />
+      <a href="contactus.html">Contact Us</a>
+      <hr />
+      <a href="admin-login.html"
+        >Log Out <i id="log-out" class="fa fa-sign-out"></i>
+      </a>
+      <hr />
+    </div>
+
+    <script>
+      let hamMenu = document.querySelector(".ham-menu");
+      let hamBar = document.getElementById("hambar");
+      let xmark = document.getElementById("xmark");
+
+      hamBar.addEventListener("click", () => {
+        hamMenu.style.left = "0%";
+      });
+
+      xmark.addEventListener("click", () => {
+        hamMenu.style.left = "-40%";
+      });
+      // Retrieve the currently logged-in officer
+      let currentOfficer = JSON.parse(localStorage.getItem("currentOfficer"));
+      console.log("Current Officer:", currentOfficer);
+
+      // Retrieve all complaints
+      let complaintDetails =
+        JSON.parse(localStorage.getItem("complaintDetails")) || [];
+      console.log("All Complaints:", complaintDetails);
+
+      // Filter complaints assigned to the current officer
+      let assignedCases = complaintDetails.filter(
+        (complaint) => complaint.assignedOfficer === currentOfficer.name
+      );
+      console.log("Assigned Cases for Current Officer:", assignedCases);
+      console.log(complaintDetails[7].assignedOfficer);
+      console.log(currentOfficer);
+
+      let caseListContainer = document.getElementById("case-list");
+
+      function renderAssignedCases() {
+        caseListContainer.innerHTML = ""; // Clear previous content
+
+        if (assignedCases.length > 0) {
+          assignedCases.forEach((caseItem) => {
+            let caseHTML = `
+                      <div class="case-item">
+                          <h3>CaseId: ${caseItem.caseId}</h3>
+                          <p><strong>Name:</strong> ${caseItem.name}</p>
+                          <p><strong>Complaint Type:</strong> ${caseItem.complaintType}</p>
+                          <p><strong>Reason:</strong> ${caseItem.reason}</p>
+                          <p><strong>Suspect Name:</strong> ${caseItem.suspectName}</p>
+                          <p><strong>Description:</strong> ${caseItem.description}</p>
+                          <p><strong>Case Status:</strong> ${caseItem.status}</p>
+                      </div>
+                  `;
+            caseListContainer.innerHTML += caseHTML;
+          });
+        } else {
+          caseListContainer.innerHTML = "<p>No assigned cases for you.</p>";
+        }
+      }
+
+      renderAssignedCases();
+    </script>
+  </body>
+</html>

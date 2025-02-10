@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+  header {
+    background-color: #0648a4;
+    color: white;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    gap: 40px;
+    padding-left: 50px;
+    box-shadow: 0px 1px 10px grey;
+    margin-bottom: 50px;
+  }
+
+  .user-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items:center ;
+  }
+
+  .user-options div {
+    width: 350px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(137deg, #1176ea, #dcecf0);
+    color: #007bff;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 4%;
+  }
+
+  .user-options div:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .user-options div:active {
+    transform: scale(1);
+  }
+
+  .user-options div img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  #hambar {
+    cursor: pointer;
+  }
+
+  .ham-menu {
+    position: fixed;
+    top: 0;
+    left: -40%;
+    right: 0;
+    background-color: rgb(222, 233, 243);
+    padding: 10px;
+    display: block;
+    transition: 0.5s;
+    padding-bottom: 3%;
+    width: 20vw;
+    height: 100vh;
+    padding-top: 5%;
+  }
+
+  .ham-menu a {
+    text-decoration: none;
+    color: black;
+    padding-top: 20%;
+  }
+
+  .ham-menu hr {
+    margin: 10% 0%;
+  }
+
+  #xmark {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    display: block;
+    top: 10px;
+  }
+
+  #log-out{
+    margin-left: 10px;
+  }
+
+  .overlay {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    position: absolute;
+    inset: 0;
+    display: none; /* Initially hidden */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+}
+
+.feedback-popup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    max-width: 90%;
+    text-align: center;
+    display: none; 
+    position: absolute;
+    top: 30vh;
+    left: 30vw;
+}
+
+.feedback-content p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.feedback-content input,
+.feedback-content textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.feedback-content input {
+    height: 40px; /* Set a fixed height for the input field */
+}
+
+.feedback-content textarea {
+    height: 150px;
+    resize: none; /* Disable resizing for the textarea */
+}
+
+.feedback-content .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedback-content .submit-btn,
+.feedback-content .close-btn {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.feedback-content .close-btn {
+    background-color: #f44336; /* Red button */
+}
+
+.feedback-content .submit-btn:hover,
+.feedback-content .close-btn:hover {
+    opacity: 0.8;
+}
+
+
+
+  @media (max-width: 1200px) {
+    .user-options {
+      grid-template-columns:1fr 1fr;
+    }
+
+    .ham-menu{
+      width: 30vw;
+    }
+  }
+
+  @media (max-width:750px) {
+    .user-options{
+      grid-template-columns: 1fr;
+    }
+  }

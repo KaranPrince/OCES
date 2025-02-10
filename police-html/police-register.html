@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Police Registration</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../styles/police-register.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header>
+      <i id="hambar" class="fas fa-bars fa-lg"></i>
+      <h1>Online Case Enrollment System</h1>
+    </header>
+
+    <!-- User Register -->
+    <p class="topic">Police Register</p>
+    <form>
+      <div class="form-divs">
+        <div class="form-div">
+          <label for="name">Name</label>
+          <input id="name" type="text" />
+
+          <label for="email">Email</label>
+          <input id="email" type="email" />
+
+          <label for="password">Password</label>
+          <input id="password" type="password" />
+
+          <label for="number">Mobile</label>
+          <input id="number" type="number" min="0" max="9" />
+
+          <label for="policeId">Police Id</label>
+          <input id="policeId" type="number" min="0" max="9" />
+        </div>
+        <div class="form-div">
+          <label for="policePosition">Select Your Position:</label>
+          <select id="policePosition" name="policePosition">
+            <option value="">Your Position</option>
+            <option value="constable">Constable</option>
+            <option value="head_constable">Head Constable</option>
+            <option value="sub_inspector">Sub-Inspector</option>
+            <option value="inspector">Inspector</option>
+            <option value="assistant_commissioner">
+              Assistant Commissioner
+            </option>
+            <option value="deputy_commissioner">Deputy Commissioner</option>
+          </select>
+
+          <label for="city">Select Your City</label>
+          <select name="city" id="city">
+            <option value="">Select Your District</option>
+            <option value="ariyalur">Ariyalur</option>
+            <option value="chengalpattu">Chengalpattu</option>
+            <option value="chennai">Chennai</option>
+            <option value="coimbatore">Coimbatore</option>
+            <option value="cuddalore">Cuddalore</option>
+            <option value="dharmapuri">Dharmapuri</option>
+            <option value="dindigul">Dindigul</option>
+            <option value="erode">Erode</option>
+            <option value="kallakurichi">Kallakurichi</option>
+            <option value="kanchipuram">Kanchipuram</option>
+            <option value="kanyakumari">Kanyakumari</option>
+            <option value="karur">Karur</option>
+            <option value="krishnagiri">Krishnagiri</option>
+            <option value="madurai">Madurai</option>
+            <option value="mayiladuthurai">Mayiladuthurai</option>
+            <option value="nagapattinam">Nagapattinam</option>
+            <option value="namakkal">Namakkal</option>
+            <option value="nilgiris">Nilgiris</option>
+            <option value="perambalur">Perambalur</option>
+            <option value="pudukkottai">Pudukkottai</option>
+            <option value="ramanathapuram">Ramanathapuram</option>
+            <option value="ranipet">Ranipet</option>
+            <option value="salem">Salem</option>
+            <option value="sivagangai">Sivagangai</option>
+            <option value="tenkasi">Tenkasi</option>
+            <option value="thanjavur">Thanjavur</option>
+            <option value="theni">Theni</option>
+            <option value="thoothukudi">Thoothukudi</option>
+            <option value="tiruchirappalli">Tiruchirappalli</option>
+            <option value="tirunelveli">Tirunelveli</option>
+            <option value="tirupattur">Tirupattur</option>
+            <option value="tiruppur">Tiruppur</option>
+            <option value="tiruvallur">Tiruvallur</option>
+            <option value="tiruvannamalai">Tiruvannamalai</option>
+            <option value="tiruvarur">Tiruvarur</option>
+            <option value="vellore">Vellore</option>
+            <option value="viluppuram">Viluppuram</option>
+            <option value="virudhunagar">Virudhunagar</option>
+          </select>
+          <p>Forget Password Question & Answer :</p>
+          <p>Q1. What is your Police Batch Number?</p>
+          <label for="ans1">Answer 1</label>
+          <input type="text" id="ans1" />
+          <p>Q2. Where was your first police station located?</p>
+          <label for="ans2">Answer 2</label>
+          <input type="text" id="ans2" />
+        </div>
+      </div>
+      <button id="registerButton">Register</button>
+
+      <div class="login-account">
+        <p>Already have an Account? <a id="loginhere"> Login Here</a></p>
+      </div>
+    </form>
+
+    <!-- login-popup -->
+    <div class="login-popup">
+      <h1>Login</h1>
+      <p id="closebutton" class="fas fa-xmark"></p>
+      <label for="login-email">Email</label>
+      <input id="login-email" type="text" />
+
+      <label for="login-password">Password</label>
+      <input id="login-password" type="password" />
+
+      <button id="loginbutton">Login</button>
+      <p class="getdown1">
+        Forget Password? <a id="forgot-password">Click here</a>
+      </p>
+      <p class="getdown">
+        Don't Have an Account? <a id="id-create">Create here!</a>
+      </p>
+    </div>
+
+    <!-- overlay -->
+    <div class="overlay"></div>
+
+    <!-- Ham-Menu -->
+    <div class="ham-menu">
+      <p id="xmark" class="fas fa-xmark"></p>
+
+      <a href="../homepage.html">Homepage</a>
+      <hr />
+      <a href="../aboutus.html">About Us</a>
+      <hr />
+      <a href="../contactus.html">Contact Us</a>
+      <hr />
+    </div>
+
+    <!-- Forgot Password QnA -->
+    <div class="QnA">
+      <p id="QnA-xmark" class="fas fa-xmark"></p>
+      <p>Forget Password Question & Answer :</p>
+
+      <label for="QnA-name">Name</label>
+      <input id="QnA-name" type="text" />
+      <p>Q1. What is your Police Batch Number?</p>
+      <label for="QnA-ans1">Answer 1</label>
+      <input type="text" id="QnA-ans1" />
+      <p>Q2. Where was your first police station located?</p>
+      <label for="QnA-ans2">Answer 2</label>
+      <input type="text" id="QnA-ans2" />
+      <button id="QnA-submit-button">Submit</button>
+    </div>
+
+    <script src="../scripts/police-register.js"></script>
+  </body>
+</html>

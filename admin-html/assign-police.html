@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assign Officers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: aliceblue;
+            padding-bottom: 100px;
+        }
+        header {
+            background-color: #0648a4;
+            color: white;
+            display: flex;
+            padding: 20px;
+            align-items: center;
+            gap: 40px;
+            padding-left: 50px;
+            box-shadow: 0px 1px 10px grey;
+            margin-bottom: 50px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 300px;
+        }
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: black;
+        }
+        button {
+            background-color: #0b8730;
+            color: white;
+            border: none;
+            padding: 6px 13px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 5px 0px;
+            margin-left: 2vw;
+            font-weight: 600;
+        }
+        button:hover {
+            background-color: #0aab0f;
+        }
+        p {
+            margin-left: 2vw;
+            margin-bottom: 1vh;
+        }
+        .complaint-details hr {
+            height: 2px;
+            background-color: rgb(107, 103, 103);
+            border: none;
+            margin: 10px 0;
+        }
+        .topic {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Online Case Enrollment System</h1>
+    </header>
+    <p class="topic">Assign Officers</p>
+    <div class="complaint-status"></div>
+    
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup" class="close">&times;</span>
+            <h2>Select Officer</h2>
+            <ul id="officer-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        let complaintDetails = JSON.parse(localStorage.getItem("complaintDetails")) || [];
+        let officers = JSON.parse(localStorage.getItem("officers")) || []; // Retrieve officers from localStorage
+        let complaintStatus = document.querySelector(".complaint-status");
+        let popup = document.getElementById("popup");
+        let closePopup = document.getElementById("close-popup");
+        let officerList = document.getElementById("officer-list");
+        let selectedComplaintIndex = null;
+
+        // Ensure officers are in the correct format (strings)
+        if (Array.isArray(officers) && officers.length > 0 && typeof officers[0] !== "string") {
+            officers = officers.map(officer => officer.name);  // Extract name if they are objects
+            localStorage.setItem("officers", JSON.stringify(officers));  // Save it back in localStorage
+        }
+
+        function renderComplaints() {
+            complaintStatus.innerHTML = "";
+            complaintDetails.forEach((complaint, index) => {
+                let complaintHTML = `
+                <div class="complaint-details" data-index="${index}">
+                    <p><strong>CaseId:</strong> ${complaint.caseId}</p>
+                    <p><strong>Name:</strong> ${complaint.name}</p>
+                    <p><strong>Complaint Type:</strong> ${complaint.complaintType}</p>
+                    <p><strong>Description:</strong> ${complaint.description}</p>
+                    <p class="case-status"><strong>Case Status:</strong> ${complaint.status || "Pending"}</p>
+                    ${complaint.assignedOfficer
+                        ? `<p class="assigned-officer" style="font-weight:700;color:green;">Assigned Officer: ${complaint.assignedOfficer}</p>`
+                        : `<button class="assign" data-index="${index}">Assign</button>`}
+                    <hr>
+                </div>`;
+                complaintStatus.innerHTML += complaintHTML;
+            });
+
+            document.querySelectorAll(".assign").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    selectedComplaintIndex = event.target.getAttribute("data-index");
+                    showPopup();
+                });
+            });
+        }
+
+        function showPopup() {
+            officerList.innerHTML = "";
+            officers.forEach(officer => {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = `${officer.name} <button class="assign-officer" data-officer="${officer.name}">Assign</button>`;
+                officerList.appendChild(listItem);
+            });
+
+            document.querySelectorAll(".assign-officer").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    let officerName = event.target.getAttribute("data-officer");
+                    assignOfficer(officerName);
+                });
+            });
+
+            popup.style.display = "flex";
+        }
+
+        function assignOfficer(officerName) {
+            if (selectedComplaintIndex !== null) {
+                complaintDetails[selectedComplaintIndex].assignedOfficer = officerName;
+                complaintDetails[selectedComplaintIndex].status = "Reviewing";
+
+                // Save updated complaints back to localStorage
+                localStorage.setItem("complaintDetails", JSON.stringify(complaintDetails));
+
+                // Store assigned complaint under the officer's name
+                let officerCases = JSON.parse(localStorage.getItem(officerName)) || [];
+                officerCases.push(complaintDetails[selectedComplaintIndex]);
+                localStorage.setItem(officerName, JSON.stringify(officerCases));
+             
+                popup.style.display = "none";
+                renderComplaints();
+            }
+        }
+
+        closePopup.addEventListener("click", () => {
+            popup.style.display = "none";
+        });
+
+        renderComplaints();
+
+        console.log(localStorage.getItem("complaintDetails"))
+    </script>
+</body>
+</html>

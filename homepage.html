@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/homepage.css" />
+    <title>OCES-Portal</title>
+  </head>
+  <body>
+    <h1 class="prj-title">Online Case Enrollment System</h1>
+
+    <div class="login-cards">
+      <div class="login-card">
+        <img
+          class="login-card-image"
+          src="img/businessman-profile-icon-male-portrait-flat-design-vector-illustration-47075259.jpg"
+        />
+        <button id="user-login-button" class="login-button">User</button>
+      </div>
+      <div class="login-card">
+        <img class="login-card-image" src="img/man-1351346_1280.webp" alt="" />
+        <button id="admin-login-button" class="login-button">Admin</button>
+      </div>
+      <div class="login-card">
+        <img
+          class="login-card-image"
+          src="img/vector-police-officer-avatar-illustration.jpg"
+          alt=""
+        />
+        <button id="police-login-button" class="login-button">Police</button>
+      </div>
+    </div>
+
+    <script>
+      const userButton = document.getElementById("user-login-button");
+      userButton.addEventListener("click", () => {
+        window.location.href = "user-html/user-register.html";
+      });
+
+      const policeButton = document.getElementById("police-login-button");
+      policeButton.addEventListener("click", () => {
+        window.location.href = "police-html/police-register.html";
+      });
+
+      const adminButton = document.getElementById("admin-login-button");
+      adminButton.addEventListener("click", () => {
+        window.location.href = "admin-html/admin-login.html";
+      });
+    </script>
+  </body>
+</html>

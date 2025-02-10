@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>User Feedback</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+      }
+
+      header {
+        background-color: #0648a4;
+        color: white;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+        gap: 40px;
+        padding-left: 50px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 50px;
+      }
+
+      #hambar {
+        cursor: pointer;
+      }
+
+      .ham-menu {
+        position: fixed;
+        top: 0;
+        left: -40%;
+        background-color: rgb(222, 233, 243);
+        padding: 20px;
+        transition: 0.5s;
+        width: 30vw;
+        height: 100vh;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .ham-menu a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        padding: 10px 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .ham-menu a:hover {
+        color: #0648a4;
+        transform: scale(1.01);
+      }
+
+      .ham-menu hr {
+        margin: 10px 0;
+        border: 0.5px solid rgba(0, 0, 0, 0.2);
+      }
+
+      #xmark {
+        position: absolute;
+        right: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        transition: 0.3s;
+        top: 10px;
+      }
+
+      #xmark:hover {
+        color: red;
+      }
+
+      .topic {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px;
+        color: #1224b6;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .user-feedback {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-feedback p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      .user-feedback p strong {
+        font-weight: bold;
+        color: #0648a4; /* Blue color for headings */
+      }
+
+      .user-feedback hr {
+        border: 0;
+        border-top: 1px solid #0648a4; /* Blue line for separation */
+        margin: 20px 0;
+      }
+
+      .user-feedback .feedback-item {
+        margin-bottom: 30px; /* Space between feedbacks */
+        padding: 15px;
+        background-color: #f0f5ff; /* Light blue background */
+        border-radius: 6px;
+        border: 1px solid #e0e9f7; /* Light border */
+      }
+
+      .user-feedback .feedback-item p {
+        margin-bottom: 10px;
+      }
+
+      .user-feedback .feedback-item p:last-child {
+        margin-bottom: 0;
+      }
+
+      .user-feedback .feedback-item .username {
+        font-weight: bold;
+        color: #0648a4;
+      }
+
+      .user-feedback .feedback-item .message {
+        color: #333;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    </style>
+
+    <header>
+      <i id="hambar" class="fas fa-bars fa-lg"></i>
+      <h1>Online Case Enrollment System</h1>
+    </header>
+    <p class="topic">User Feedbacks</p>
+    <div class="user-feedback"></div>
+
+    <script>
+      let userFeedbacks = JSON.parse(localStorage.getItem("feedback")) || [];
+      console.log(userFeedbacks);
+      let userFeedbackDiv = document.querySelector(".user-feedback");
+      userFeedbacks.forEach((userFeedback) => {
+        userFeedbackDiv.innerHTML += `
+        <div class="feedback-item">
+           <p><strong>User Name:</strong>${userFeedback.userName}</p>
+           <p><strong>Feedback:</strong></p>
+           <p>${userFeedback.feedbackMessage}
+            
+        </div>
+        `;
+      });
+    </script>
+  </body>
+</html>
