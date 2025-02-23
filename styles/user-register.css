@@ -49,6 +49,15 @@ label {
   margin-bottom: 15px;
 }
 
+.ham-menu a:hover {
+  color: #0648a4;
+  transform: scale(1.01);
+}
+
+#xmark:hover {
+  color: red;
+}
+
 input {
   border: none;
   background: transparent !important;
@@ -227,7 +236,6 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-top: 20%;
 }
 
-
 .ham-menu hr {
   margin: 10% 0%;
 }
@@ -289,7 +297,7 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 50%;
   }
 
-  .login-popup{
+  .login-popup {
     left: 25%;
   }
 

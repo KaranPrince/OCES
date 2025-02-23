@@ -41,27 +41,29 @@
         cursor: pointer;
       }
 
+      
       .ham-menu {
         position: fixed;
         top: 0;
-        left: -50%;
-        right: 0;
+        left: -40%;
         background-color: rgb(222, 233, 243);
-        padding: 10px;
-        display: block;
-        width: 100vw;
+        padding: 20px;
         transition: 0.5s;
-        padding-bottom: 3%;
         width: 20vw;
         height: 100vh;
-        padding-top: 5%;
+        box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+        padding-top: 3%;
       }
 
       .ham-menu a {
         text-decoration: none;
         color: black;
-        padding-top: 20%;
+        display: block;
+       
+        font-size: 18px;
+        font-weight: 600;
       }
+
 
       .ham-menu hr {
         margin: 10% 0%;
@@ -73,6 +75,15 @@
         cursor: pointer;
         display: block;
         top: 10px;
+      }
+
+      .ham-menu a:hover {
+        color: #0648a4;
+        transform: scale(1.01);
+      }
+
+      #xmark:hover {
+        color: red;
       }
 
       .admin-info{
@@ -103,8 +114,7 @@
 
     <a href="homepage.html">Homepage</a>
     <hr />
-    <a href="userhome.html">User Home</a>
-    <hr />
+   
     <a href="aboutus.html">About Us</a>
     <hr />
     <a href="contactus.html">Contact Us</a>

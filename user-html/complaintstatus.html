@@ -13,22 +13,120 @@
   </head>
   <body>
     <style>
-      * { margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-      body { background-color: aliceblue; padding-bottom: 100px; }
-      header { background-color: #0648a4; color: white; display: flex; padding: 20px; align-items: center; gap: 40px; padding-left: 50px; box-shadow: 0px 1px 10px grey; margin-bottom: 50px; }
-      .topic { text-align: center; margin-bottom: 40px; font-size: 30px; }
-      #complaint-details p { margin-bottom: 2vh; margin-left: 2vw; }
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: aliceblue;
+        padding-bottom: 100px;
+      }
+      #hambar {
+        cursor: pointer;
+      }
+
+      .ham-menu {
+        position: fixed;
+        top: 0;
+        left: -50%;
+        right: 0;
+        background-color: rgb(222, 233, 243);
+        padding: 10px;
+        display: block;
+        width: 100vw;
+        transition: 0.5s;
+        padding-bottom: 3%;
+        width: 20vw;
+        height: 100vh;
+        padding-top: 5%;
+      }
+
+      .ham-menu a {
+        text-decoration: none;
+        color: black;
+        padding-top: 20%;
+      }
+
+      .ham-menu hr {
+        margin: 10% 0%;
+      }
+
+      #xmark{
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  display: block;
+  top: 10px;
+}
+
+      header {
+        background-color: #0648a4;
+        color: white;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+        gap: 40px;
+        padding-left: 50px;
+        box-shadow: 0px 1px 10px grey;
+        margin-bottom: 50px;
+      }
+      .ham-menu a:hover {
+        color: #0648a4;
+        transform: scale(1.01);
+      }
+
+      #xmark:hover {
+        color: red;
+      }
+
+      .topic {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 30px;
+      }
+      #complaint-details p {
+        margin-bottom: 2vh;
+        margin-left: 2vw;
+      }
     </style>
 
     <header>
+      <i id="hambar" class="fas fa-bars fa-lg"></i>
       <h1>Online Case Enrollment System</h1>
     </header>
 
     <p class="topic">View Complaint Status</p>
     <div class="complaint-status"></div>
 
+    <div class="ham-menu">
+      <p id="xmark" class="fas fa-xmark"></p>
+      <a href="../homepage.html">Homepage</a>
+      <hr />
+      <a href="../aboutus.html">About Us</a>
+      <hr />
+      <a href="../contactus.html">Contact Us</a>
+      <hr />
+      <a href="../user-html/user-register.html"
+        >Log Out <i id="log-out" class="fa fa-sign-out"></i>
+      </a>
+      <hr />
+    </div>
+
     <script>
-      let complaintDetails = JSON.parse(localStorage.getItem("complaintDetails")) || [];
+      let hamMenu = document.querySelector(".ham-menu");
+      let hamBar = document.getElementById("hambar");
+      let xmark = document.getElementById("xmark");
+
+      hamBar.addEventListener("click", () => {
+        hamMenu.style.left = "0%";
+      });
+
+      xmark.addEventListener("click", () => {
+        hamMenu.style.left = "-40%";
+      });
+      let complaintDetails =
+        JSON.parse(localStorage.getItem("complaintDetails")) || [];
       let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
       if (!currentUser) {
@@ -36,11 +134,13 @@
         window.location.href = "newcase.html";
       }
 
-      let userComplaints = complaintDetails.filter(complaint => complaint.userId === currentUser.userId);
+      let userComplaints = complaintDetails.filter(
+        (complaint) => complaint.userId === currentUser.userId
+      );
       let complaintStatus = document.querySelector(".complaint-status");
 
       if (userComplaints.length > 0) {
-        userComplaints.forEach(complaint => {
+        userComplaints.forEach((complaint) => {
           complaintStatus.innerHTML += `
             <div id="complaint-details">
               <p>CaseId: ${complaint.caseId}</p>
@@ -53,12 +153,19 @@
               <p style="font-weight: 700;">
                 Case Status: ${complaint.status ? complaint.status : "Pending"}
               </p>
-              ${complaint.assignedOfficer ? `<p style="font-weight: 700; color: green;">Assigned Officer: ${complaint.assignedOfficer}</p>` : ""}
+              ${
+                complaint.assignedOfficer
+                  ? `<p style="font-weight: 700; color: green;">Assigned Officer: ${complaint.assignedOfficer}</p>`
+                  : ""
+              }
               <hr>
             </div>
             
           `;
-          let complaints = localStorage.setItem(complaintStatus,JSON.stringify("complaintStatus"))
+          let complaints = localStorage.setItem(
+            complaintStatus,
+            JSON.stringify("complaintStatus")
+          );
         });
       } else {
         complaintStatus.innerHTML = `<h2>You have not posted any complaints</h2>`;

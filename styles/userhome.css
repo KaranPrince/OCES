@@ -16,6 +16,16 @@
     margin-bottom: 50px;
   }
 
+  .ham-menu a:hover {
+    color: #0648a4;
+    transform: scale(1.01);
+  }
+  
+  #xmark:hover {
+    color: red;
+  }
+  
+
   .user-options {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -72,19 +82,30 @@
     padding-bottom: 3%;
     width: 20vw;
     height: 100vh;
-    padding-top: 5%;
+    padding-top: 3%;
   }
+
 
   .ham-menu a {
     text-decoration: none;
     color: black;
-    padding-top: 20%;
+    display: block;
+    padding:10px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .ham-menu a:hover {
+    color: #0648a4;
+    transform: scale(1.01);
   }
 
   .ham-menu hr {
-    margin: 10% 0%;
+    margin: 10px 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
   }
 
+  
   #xmark {
     position: absolute;
     right: 15px;

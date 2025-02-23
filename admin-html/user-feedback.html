@@ -48,9 +48,10 @@
         background-color: rgb(222, 233, 243);
         padding: 20px;
         transition: 0.5s;
-        width: 30vw;
+        width: 22vw;
         height: 100vh;
         box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+        padding-top: 3%;
       }
 
       .ham-menu a {
@@ -156,7 +157,33 @@
     <p class="topic">User Feedbacks</p>
     <div class="user-feedback"></div>
 
+    <div class="ham-menu">
+      <p id="xmark" class="fas fa-xmark"></p>
+      <a href="/homepage.html">Homepage</a>
+      <hr />
+      <a href="admin-home.html">Admin Home</a>
+      <hr />
+      <a href="aboutus.html">About Us</a>
+      <hr />
+      <a href="contactus.html">Contact Us</a>
+      <hr />
+      <!-- <a href="admin-login.html"
+        >Log Out <i id="log-out" class="fa fa-sign-out"></i>
+      </a> -->
+      <hr />
+
     <script>
+      let hamMenu = document.querySelector(".ham-menu");
+      let hamBar = document.getElementById("hambar");
+      let xmark = document.getElementById("xmark");
+
+      hamBar.addEventListener("click", () => {
+        hamMenu.style.left = "0%";
+      });
+
+      xmark.addEventListener("click", () => {
+        hamMenu.style.left = "-40%";
+      });
       let userFeedbacks = JSON.parse(localStorage.getItem("feedback")) || [];
       console.log(userFeedbacks);
       let userFeedbackDiv = document.querySelector(".user-feedback");
