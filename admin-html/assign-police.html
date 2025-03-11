@@ -23,7 +23,7 @@
       header {
         background-color: #0648a4;
         color: white;
-        display: flex;
+        display: flex;  
         padding: 20px;
         align-items: center;
         gap: 40px;
@@ -170,38 +170,33 @@
       </a>
       <hr />
     </div>
-    <script>
-      let hamMenu = document.querySelector(".ham-menu");
+    <script>let hamMenu = document.querySelector(".ham-menu");
       let hamBar = document.getElementById("hambar");
       let xmark = document.getElementById("xmark");
-
+      
       hamBar.addEventListener("click", () => {
         hamMenu.style.left = "0%";
       });
-
+      
       xmark.addEventListener("click", () => {
         hamMenu.style.left = "-40%";
       });
-
-      let complaintDetails =
-        JSON.parse(localStorage.getItem("complaintDetails")) || [];
-      let officers = JSON.parse(localStorage.getItem("officers")) || []; // Retrieve officers from localStorage
+      
+      let complaintDetails = JSON.parse(localStorage.getItem("complaintDetails")) || [];
+      let officers = JSON.parse(localStorage.getItem("officers")) || [];
       let complaintStatus = document.querySelector(".complaint-status");
       let popup = document.getElementById("popup");
       let closePopup = document.getElementById("close-popup");
       let officerList = document.getElementById("officer-list");
       let selectedComplaintIndex = null;
-
-      // Ensure officers are in the correct format (strings)
-      if (
-        Array.isArray(officers) &&
-        officers.length > 0 &&
-        typeof officers[0] !== "string"
-      ) {
-        officers = officers.map((officer) => officer.name); // Extract name if they are objects
-        localStorage.setItem("officers", JSON.stringify(officers)); // Save it back in localStorage
+      
+      console.log("Retrieved officers from localStorage:", officers);
+      
+      if (Array.isArray(officers) && officers.length > 0 && typeof officers[0] === "object" && officers[0].name) {
+        officers = officers.map((officer) => officer.name);
+        localStorage.setItem("officers", JSON.stringify(officers));
       }
-
+      
       function renderComplaints() {
         complaintStatus.innerHTML = "";
         complaintDetails.forEach((complaint, index) => {
@@ -209,15 +204,9 @@
                 <div class="complaint-details" data-index="${index}">
                     <p><strong>CaseId:</strong> ${complaint.caseId}</p>
                     <p><strong>Name:</strong> ${complaint.name}</p>
-                    <p><strong>Complaint Type:</strong> ${
-                      complaint.complaintType
-                    }</p>
-                    <p><strong>Description:</strong> ${
-                      complaint.description
-                    }</p>
-                    <p class="case-status"><strong>Case Status:</strong> ${
-                      complaint.status || "Pending"
-                    }</p>
+                    <p><strong>Complaint Type:</strong> ${complaint.complaintType}</p>
+                    <p><strong>Description:</strong> ${complaint.description}</p>
+                    <p class="case-status"><strong>Case Status:</strong> ${complaint.status || "Pending"}</p>
                     ${
                       complaint.assignedOfficer
                         ? `<p class="assigned-officer" style="font-weight:700;color:green;">Assigned Officer: ${complaint.assignedOfficer}</p>`
@@ -227,7 +216,7 @@
                 </div>`;
           complaintStatus.innerHTML += complaintHTML;
         });
-
+      
         document.querySelectorAll(".assign").forEach((button) => {
           button.addEventListener("click", (event) => {
             selectedComplaintIndex = event.target.getAttribute("data-index");
@@ -235,55 +224,53 @@
           });
         });
       }
-
+      
       function showPopup() {
         officerList.innerHTML = "";
         officers.forEach((officer) => {
+          let officerName = typeof officer === "object" && officer.name ? officer.name : officer;
           let listItem = document.createElement("li");
-          listItem.innerHTML = `${officer.name} <button class="assign-officer" data-officer="${officer.name}">Assign</button>`;
+          listItem.innerHTML = `${officerName} <button class="assign-officer" data-officer="${officerName}">Assign</button>`;
           officerList.appendChild(listItem);
         });
-
+      
+        console.log("Officer list rendered:", officers);
+      
         document.querySelectorAll(".assign-officer").forEach((button) => {
           button.addEventListener("click", (event) => {
             let officerName = event.target.getAttribute("data-officer");
+            console.log("Assigning officer:", officerName);
             assignOfficer(officerName);
           });
         });
-
+      
         popup.style.display = "flex";
       }
-
+      
       function assignOfficer(officerName) {
         if (selectedComplaintIndex !== null) {
-          complaintDetails[selectedComplaintIndex].assignedOfficer =
-            officerName;
+          complaintDetails[selectedComplaintIndex].assignedOfficer = officerName;
           complaintDetails[selectedComplaintIndex].status = "Reviewing";
-
-          // Save updated complaints back to localStorage
-          localStorage.setItem(
-            "complaintDetails",
-            JSON.stringify(complaintDetails)
-          );
-
-          // Store assigned complaint under the officer's name
-          let officerCases =
-            JSON.parse(localStorage.getItem(officerName)) || [];
+      
+          localStorage.setItem("complaintDetails", JSON.stringify(complaintDetails));
+      
+          let officerCases = JSON.parse(localStorage.getItem(officerName)) || [];
           officerCases.push(complaintDetails[selectedComplaintIndex]);
           localStorage.setItem(officerName, JSON.stringify(officerCases));
-
+      
           popup.style.display = "none";
           renderComplaints();
         }
       }
-
+      
       closePopup.addEventListener("click", () => {
         popup.style.display = "none";
       });
-
+      
       renderComplaints();
-
-      console.log(localStorage.getItem("complaintDetails"));
-    </script>
+      
+      console.log("Final complaint details:", localStorage.getItem("complaintDetails"));
+      
+          </script>
   </body>
 </html>
